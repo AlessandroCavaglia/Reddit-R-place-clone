@@ -13,8 +13,8 @@ public class Cell implements Serializable {
     @Override
     public String toString() {
         return "{" +
-                "\"id\"=\"" + id +
-                "\", \"colour\"=\"" + colour +
+                "\"id\":\"" + id +
+                "\", \"colour\":\"" + colour +
                 "\"}";
     }
 

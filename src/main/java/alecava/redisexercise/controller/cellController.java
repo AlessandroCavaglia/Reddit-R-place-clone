@@ -12,11 +12,6 @@ public class cellController {
     @Autowired
     CellRepository cellRepository;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    String hello(){
-        return("Hello World");
-    }
-
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     String getAllCells(){
         return  cellRepository.findAll().toString();

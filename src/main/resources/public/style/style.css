@@ -1,0 +1,17 @@
+.cell{
+    width:10px;
+    height: 10px;
+    background-color: red;
+    display: inline-block;
+}
+
+.cell:hover{
+    width: 8px;
+    height: 8px;
+    border:solid 1px black;
+    cursor: pointer;
+}
+
+.containerDiv{
+    height: 10px;
+}
