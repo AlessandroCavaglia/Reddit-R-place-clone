@@ -1,4 +1,4 @@
-const config={
+let config={
     width:100,
     height:100,
     refresh_time:10,
@@ -12,14 +12,18 @@ let lastUpdate=null;
 function changeColour(){
     if(lastUpdate==null) return;
     console.log("Clicked cell: "+this.getAttribute("data-identifier"));
-    comunicateChangeColour(this.getAttribute("data-identifier"),0);
+    comunicateChangeColour(this.getAttribute("data-identifier"),0,this);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
     map_div=document.getElementById("map");
+    getConfigs()
+});
+
+function startGame(){
     drawFirstMap()
     getMapState();
-    setInterval(getMapState, 2000);
+    setInterval(getMapState, config.refresh_time*1000);
 
 
 
@@ -27,8 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let i = 0; i < cells.length; i++) {
         cells[i].addEventListener('click', changeColour, false);
     }
-
-});
+}
 
 function drawFirstMap(){
     let div=null;
@@ -52,7 +55,7 @@ function drawFirstMap(){
 function updateMapCells(data){
     let dataToUpdate=null;
     if(lastUpdate!=null){
-        dataToUpdate = data.filter(value => !lastUpdate.includes(value));
+        dataToUpdate = data.filter(value => !lastUpdate.some(value2=> value.id===value2.id && value.colour===value2.colour));
     }else{
         dataToUpdate=data;
     }
@@ -66,8 +69,17 @@ function updateMapCells(data){
 }
 
 
-function comunicateChangeColour(id,colour){
+function comunicateChangeColour(id,colour,elem){
+    console.log("--- COMUNICATING COLOUR CHANGE TO SERVER")
     var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (this.readyState !== 4) return;
+
+        if (this.status === 200) {
+            //TODO USE A COLOUR TABLE
+            elem.style.backgroundColor=config[colour];
+        }
+    };
     xhr.open("POST", "http://localhost:8080/set", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
@@ -75,8 +87,7 @@ function comunicateChangeColour(id,colour){
         colour:colour,
     }));
 
-    //TODO USE A COLOUR TABLE
-    this.style.backgroundColor="blue"
+
 }
 
 function getMapState(){
@@ -94,6 +105,26 @@ function getMapState(){
         // end of state change: it can be after some time (async)
     };
     xhr.open("GET", "http://localhost:8080/get", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send();
+}
+
+function getConfigs(){
+    console.log("--- LOADING CONFIG FROM SERVER")
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (this.readyState !== 4) return;
+
+        if (this.status === 200) {
+            var data = JSON.parse(this.responseText);
+            config=data;
+            startGame();
+        }
+
+
+        // end of state change: it can be after some time (async)
+    };
+    xhr.open("GET", "http://localhost:8080/config", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send();
 }

@@ -1,4 +1,4 @@
-package alecava.redisexercise.model;
+package alecava.redisexercise.model.DAO;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
