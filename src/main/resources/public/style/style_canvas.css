@@ -1,0 +1,81 @@
+body{
+    background-color: black;
+}
+.cell{
+    width:10px;
+    height: 10px;
+    display: inline-block;
+    background-color: white;
+    transform: translateY(-4px);
+}
+
+.cell:hover{
+    width: 8px;
+    height: 8px;
+    border:solid 1px black;
+    cursor: pointer;
+}
+
+.containerDiv{
+    height: 10px;
+    width:max-content;
+}
+
+.color_picker{
+    width: calc(80vw - 60px);
+    height: calc(80vh - 60px);
+    position: absolute !important;
+    top: calc(10vh + 30px);
+    left: calc(10vh + 60px);
+    background-color: #122f64 !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+.colours{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row
+}
+.color_picker_color{
+    height: 20px;
+    flex: 1 2 20vw;
+    margin: 1%;
+}
+.color_picker_color:hover{
+    transform: translateY(-1px);
+    cursor: pointer;
+}
+.header{
+    background-color: #f9f002;
+    height: 15px;
+}
+.map_section{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    height: 60vh;
+}
+.map_div{
+    width: calc(100vw);
+    height: calc(60vh - 122px);
+    border-top:solid 1px black;
+    border-bottom: solid 1px black;
+    overflow: scroll;
+    display: flex;
+    justify-content: center;
+}
+
+.closePicker{
+    color: #f9f002;
+    text-align: right;
+}
+.closePicker:hover{
+    cursor: pointer;
+}
+
+.canvas{
+    image-rendering: pixelated;
+}
+
+.canvas:hover{
+    cursor: pointer;
+}
