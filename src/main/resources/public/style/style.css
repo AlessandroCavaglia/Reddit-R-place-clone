@@ -18,6 +18,7 @@ body{
 
 .containerDiv{
     height: 10px;
+    width:max-content;
 }
 
 .color_picker{
@@ -25,7 +26,10 @@ body{
     height: calc(80vh - 60px);
     position: absolute !important;
     top: calc(10vh + 30px);
-    left: calc(10vh + 30px);
+    left: calc(10vh + 60px);
+    background-color: #122f64 !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
 }
 .colours{
     display: flex;
@@ -57,6 +61,13 @@ body{
     border-bottom: solid 1px black;
     overflow: scroll;
     display: flex;
-    align-items: center;
     justify-content: center;
+}
+
+.closePicker{
+    color: #f9f002;
+    text-align: right;
+}
+.closePicker:hover{
+    cursor: pointer;
 }

@@ -7,6 +7,7 @@ let config={
 }
 
 let map_div=null
+let zoom=100;
 let color_picker_div=null;
 let map=[]
 let lastUpdate=null;
@@ -153,4 +154,22 @@ function getConfigs(){
     xhr.open("GET", "http://localhost:8080/config", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send();
+}
+
+function increaseZoom(){
+    if((zoom+10)<250){
+        zoom=zoom+20;
+        map_div.style.zoom=zoom+"%"
+    }
+}
+
+function decreaseZoom(){
+    if((zoom-10) > 30){
+        zoom = zoom-20;
+        map_div.style.zoom=zoom+"%"
+    }
+}
+
+function closeColorPicker(){
+    color_picker_div.style.display="none";
 }
