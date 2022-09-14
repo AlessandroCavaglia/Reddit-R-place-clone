@@ -1,8 +1,12 @@
+body{
+    background-color: black;
+}
 .cell{
     width:10px;
     height: 10px;
-    background-color: red;
     display: inline-block;
+    background-color: white;
+    transform: translateY(-4px);
 }
 
 .cell:hover{
@@ -14,4 +18,45 @@
 
 .containerDiv{
     height: 10px;
+}
+
+.color_picker{
+    width: calc(80vw - 60px);
+    height: calc(80vh - 60px);
+    position: absolute !important;
+    top: calc(10vh + 30px);
+    left: calc(10vh + 30px);
+}
+.colours{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row
+}
+.color_picker_color{
+    height: 20px;
+    flex: 1 2 20vw;
+    margin: 1%;
+}
+.color_picker_color:hover{
+    transform: translateY(-1px);
+    cursor: pointer;
+}
+.header{
+    background-color: #f9f002;
+    height: 15px;
+}
+.map_section{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    height: 60vh;
+}
+.map_div{
+    width: calc(100vw);
+    height: calc(60vh - 122px);
+    border-top:solid 1px black;
+    border-bottom: solid 1px black;
+    overflow: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

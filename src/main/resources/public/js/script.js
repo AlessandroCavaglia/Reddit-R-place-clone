@@ -5,14 +5,26 @@ let config={
     insert_delay:3,
     colours:["blue","green","yellow"]
 }
+
 let map_div=null
+let color_picker_div=null;
 let map=[]
 let lastUpdate=null;
+let requestedCellId={}
+let requestedCell=null;
 
-function changeColour(){
+function startChangeColour(){
     if(lastUpdate==null) return;
     console.log("Clicked cell: "+this.getAttribute("data-identifier"));
-    comunicateChangeColour(this.getAttribute("data-identifier"),0,this);
+    requestedCellId=this.getAttribute("data-identifier");
+    requestedCell=this;
+    color_picker_div.style.display="block";
+}
+
+function endChangeColour(){
+    if(lastUpdate==null) return;
+    console.log("Clicked color: "+config.colours[this.getAttribute("data-color")]);
+    comunicateChangeColour(requestedCellId,this.getAttribute("data-color"),requestedCell);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -21,15 +33,14 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function startGame(){
+    drawColorPicker();
     drawFirstMap()
     getMapState();
     setInterval(getMapState, config.refresh_time*1000);
 
-
-
     let cells = document.getElementsByClassName("cell");
     for (let i = 0; i < cells.length; i++) {
-        cells[i].addEventListener('click', changeColour, false);
+        cells[i].addEventListener('click', startChangeColour, false);
     }
 }
 
@@ -52,6 +63,21 @@ function drawFirstMap(){
     }
 }
 
+function drawColorPicker(){
+    color_picker_div=document.getElementById("color_picker");
+    let pickerDiv=document.getElementById("colours");
+    for(let i=0;i<config.colours.length;i++){
+        let span=document.createElement('button');
+        span.className="color_picker_color cyberpunk2077";
+        span.dataset.color=i;
+        span.style.backgroundColor=config.colours[i];
+        span.addEventListener('click', endChangeColour, false);
+        pickerDiv.appendChild(span);
+    }
+
+
+}
+
 function updateMapCells(data){
     let dataToUpdate=null;
     if(lastUpdate!=null){
@@ -63,7 +89,7 @@ function updateMapCells(data){
     for(let i=0;i<dataToUpdate.length;i++){
         let cell=dataToUpdate[i];
         let span_cell=document.getElementById("cell-"+cell.id);
-        span_cell.style.backgroundColor="blue";
+        span_cell.style.backgroundColor=config.colours[cell.colour];
     }
     lastUpdate=data;
 }
@@ -76,9 +102,9 @@ function comunicateChangeColour(id,colour,elem){
         if (this.readyState !== 4) return;
 
         if (this.status === 200) {
-            //TODO USE A COLOUR TABLE
-            elem.style.backgroundColor=config[colour];
+            elem.style.backgroundColor=config.colours[colour];
         }
+        color_picker_div.style.display="none";
     };
     xhr.open("POST", "http://localhost:8080/set", true);
     xhr.setRequestHeader('Content-Type', 'application/json');

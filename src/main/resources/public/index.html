@@ -2,13 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>R/Place</title>
+    <link rel="stylesheet" href="style/cyberpunk2077.css">
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-    <h1>R/Place</h1>
-    <div id="map">
+<header class="header"></header>
+    <section class="cyberpunk black" style="padding: 30px 30px;">
+        <h1 class="cyberpunk glitched">R/Place</h1>
+    </section>
+    <section class="map_section cyberpunk yellow">
+        <div class="map_div">
+            <div id="map" style="border: solid 2px">
 
+            </div>
+        </div>
+    </section>
+    <div id="color_picker" class="color_picker cyberpunk black" style="display: none">
+        <h1 class="cyberpunk" style="color: #f9f002">Scegli il colore per la cella</h1>
+        <div id="colours" class="colours">
+        </div>
     </div>
 <script src="js/script.js"></script>
 </body>
