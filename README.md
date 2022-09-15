@@ -7,7 +7,11 @@ This Github project is an exercise i decided to start after following a redis co
 Develop a clone of the reddit annual event R/Place, an interactive html page where everyone can place coloured pixels and try to build colorful drawings.
 
 ## Project Overview
-The backend is developed with Java Spring using Redis for fast data access and a mysql database to store periodically the data, the front-end will probably be developed with plain html and js but i haven't yet decided this
+The backend is developed with Java Spring using Redis for fast data
+access, the front-end is developed with vanilla js html and a cool css style i 
+found online called cyberpunk css [Github Repo](https://github.com/gwannon/Cyberpunk-2077-theme-css). 
+The front-end has been developed two times, i started using spans for cells but had performance issues
+and migrated to using canvas, the span version isn't maintened anymore and the canvas is the official one.
 
 ## Project Status
 In development

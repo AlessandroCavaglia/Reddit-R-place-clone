@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>R/Place</title>
     <link rel="stylesheet" href="style/cyberpunk2077.css">
-    <link rel="stylesheet" href="style/style_canvas.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
 <header class="header"></header>
@@ -13,11 +13,8 @@
     </section>
     <section class="map_section cyberpunk yellow">
         <div class="map_div">
-            <div id="map-container" style="border: solid 1px">
-                <canvas id="map" class="canvas" onmouseleave="mouseLeave(event)" onmousemove="mouseMove(event)" onclick="startChangeColour(event)">
+            <div id="map" style="border: solid 2px;height: fit-content">
 
-                </canvas>
-                <span style="border: solid 1px black;position: absolute;display: inline-block;pointer-events: none;" id="border"></span>
             </div>
         </div>
         <div style="display: flex">
@@ -31,6 +28,6 @@
         <div id="colours" class="colours">
         </div>
     </div>
-<script src="js/script_canvas.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>

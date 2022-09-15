@@ -5,7 +5,7 @@ let config={
     insert_delay:3,
     colours:["blue","green","yellow"]
 }
-
+let true_map_div=null
 let map_div=null
 let hoverCell=null
 let map_container=null
@@ -16,10 +16,11 @@ let map=[]
 let lastUpdate=null;
 let requestedCellId={}
 let scale_factor=8;
-let offX=0;
+let block=false;
 
 function startChangeColour(event){
     if(lastUpdate==null) return;
+    block=true;
     let pos=storeGuess(event);
     console.log("Clicked cell: "+pos[0]+" - "+pos[1]);
     requestedCellId=pos;
@@ -35,10 +36,10 @@ function endChangeColour(){
 
 document.addEventListener("DOMContentLoaded", function() {
     map_div=document.getElementById("map");
+    true_map_div=document.getElementById("map-div");
     map_container=document.getElementById("map-container");
     hoverCell=document.getElementById("border");
     ctx = map_div.getContext("2d");
-    offX=map_div.offsetTop;
     getConfigs()
 });
 
@@ -104,6 +105,7 @@ function comunicateChangeColour(id,colour,coords){
             ctx.fillStyle = config.colours[colour];
             ctx.fillRect(coords[0]*scale_factor, coords[1]*scale_factor, scale_factor, scale_factor);
         }
+        block=false;
         color_picker_div.style.display="none";
     };
     xhr.open("POST", "http://localhost:8080/set", true);
@@ -169,6 +171,7 @@ function decreaseZoom(){
 
 function closeColorPicker(){
     color_picker_div.style.display="none";
+    block=false;
 }
 
 function getCoords(index){
@@ -193,14 +196,20 @@ function storeGuess(event) {
 let cellPos=[-1,-1]
 let lastDrawn=[-1,-1]
 function mouseMove(event){
+    if(block)
+        return;
     cellPos=storeGuess(event);
 }
 
 function mouseLeave(event){
+    if(block)
+        return;
     cellPos=[-1,-1]
 }
 
 function drawCellBorder(){
+    if(block)
+        return;
     if(cellPos[0]===-1 || cellPos[1]===-1){
         hoverCell.style.display="none";
         return;
@@ -211,8 +220,10 @@ function drawCellBorder(){
 
     let offY=map_div.offsetLeft;
     hoverCell.style.display="inline-block";
-    hoverCell.style.top=offX +(cellPos[1]*scale_factor)+"px";
-    hoverCell.style.left=offY +(cellPos[0]*scale_factor)+"px";
+    let offsetX=(cellPos[1]*scale_factor)-(true_map_div.scrollTop/(zoom/100));
+    //offsetX=roundValue(offsetX,scale_factor)
+    hoverCell.style.top=18/(zoom/100) + offsetX+"px";
+    hoverCell.style.left=offY -(true_map_div.scrollLeft/(zoom/100)) +(cellPos[0]*scale_factor)+"px";
     lastDrawn=cellPos
     //TODO CAPIRE PERCHé ZOMMANDO SI SMINCHIA
 }

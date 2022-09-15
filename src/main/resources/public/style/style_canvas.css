@@ -1,5 +1,7 @@
 body{
     background-color: black;
+    width: 100vw;
+    overflow-x: hidden
 }
 .cell{
     width:10px;
@@ -27,7 +29,7 @@ body{
     position: absolute !important;
     top: calc(10vh + 30px);
     left: calc(10vh + 60px);
-    background-color: #122f64 !important;
+    background-color: #122f649e !important;
     padding-left: 20px !important;
     padding-right: 20px !important;
 }
@@ -52,11 +54,12 @@ body{
 .map_section{
     padding-left: 0 !important;
     padding-right: 0 !important;
-    height: 60vh;
+    padding-top: 17px !important;
+    padding-bottom: 17px !important;
 }
 .map_div{
     width: calc(100vw);
-    height: calc(60vh - 122px);
+    height: calc(80vh - 122px);
     border-top:solid 1px black;
     border-bottom: solid 1px black;
     overflow: scroll;
@@ -77,5 +80,9 @@ body{
 }
 
 .canvas:hover{
+    cursor: pointer;
+}
+
+.pointer:hover{
     cursor: pointer;
 }
