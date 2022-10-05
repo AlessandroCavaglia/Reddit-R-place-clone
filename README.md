@@ -22,7 +22,7 @@ features.A missing feature is a limit for the requests but this is meant as an e
 
 ## Proof of concept
 
-![](https://github.com/AlessandroCavaglia/Reddit-R-place-clone/RPLACE_2.gif)
+![](https://raw.githubusercontent.com/AlessandroCavaglia/Reddit-R-place-clone/main/RPLACE_2.gif)
 
 ## License
 [AGPL-3.0](https://choosealicense.com/licenses/agpl-3.0/)
