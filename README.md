@@ -14,7 +14,15 @@ The front-end has been developed two times, i started using spans for cells but 
 and migrated to using canvas, the span version isn't maintened anymore and the canvas is the official one.
 
 ## Project Status
-In development
+Concluded
+
+## Results
+The result is a simple website managed with spring that can be easyli dockerized and gives a simple rPlace clone with zoom 
+features.A missing feature is a limit for the requests but this is meant as an exercise so it isn't gonna be implemented
+
+## Proof of concept
+
+![](https://github.com/AlessandroCavaglia/Reddit-R-place-clone/RPLACE_2.gif)
 
 ## License
 [AGPL-3.0](https://choosealicense.com/licenses/agpl-3.0/)
