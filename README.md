@@ -20,6 +20,13 @@ Concluded
 The result is a simple website managed with spring that can be easyli dockerized and gives a simple rPlace clone with zoom 
 features.A missing feature is a limit for the requests but this is meant as an exercise so it isn't gonna be implemented
 
+## Installation
+The project is a simple spring maven project that can be easily run with standard maven. The project is configured to run with a redis local image
+i suggest using docker with 
+'''
+docker pull redis
+'''
+
 ## Proof of concept
 
 ![](https://raw.githubusercontent.com/AlessandroCavaglia/Reddit-R-place-clone/main/RPLACE_2.gif)
